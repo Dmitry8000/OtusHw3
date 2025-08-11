@@ -1,0 +1,27 @@
+{
+  "info": {
+    "name": "K8s Health Check",
+    "_postman_id": "12345678-abcd-efgh-ijkl-1234567890ab",
+    "description": "Проверка доступности сервиса в Kubernetes",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check Root",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "http://arch.homework/health",
+          "protocol": "http",
+          "host": ["arch.homework"],
+          "path": ["health"]
+        }
+      },
+      "response": []
+    }
+    
+  ]
+}
