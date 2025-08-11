@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hw3-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hw3-app
+  template:
+    metadata:
+      labels:
+        app: hw3-app
+    spec:
+      containers:
+      - name: hw3-container
+        image: dmitry8000/hw2service:1.0
+        ports:
+        - containerPort: 8000
+        livenessProbe:
+          httpGet:
+            path: /health/
+            port: 8000
+          initialDelaySeconds: 3
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /health/
+            port: 8000
+          initialDelaySeconds: 1
+          periodSeconds: 5
