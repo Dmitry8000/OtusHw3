@@ -2,17 +2,28 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: hw3-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /health$2
 spec:
   ingressClassName: nginx
   rules:
-      - host: arch.homework
-        http:
-          paths:
-            - path: /health
-              pathType: Prefix
-              backend:
-                service:
-                  name: hw3-service
-                  port:
-                    number: 80
+    - host: arch.homework
+      http:
+        paths:
+          - path: /health(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: hw3-service
+                port:
+                  number: 80
+          - path: /otusapp/dmitry(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: hw3-service
+                port:
+                  number: 80
+
           
